@@ -1,0 +1,8 @@
+(* Parameters *)
+d_A_min, d_A_max, 
+d_B_min, d_B_max, 
+d_C_min, d_C_max, 
+d_D_min, d_D_max, 
+d_E_min, d_E_max
+                    : parameters; 
+

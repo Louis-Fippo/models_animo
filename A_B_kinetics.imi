@@ -1,0 +1,99 @@
+(************************************************************
+ *                      IMITATOR MODEL                      
+ *
+ * Tentative encoding of Louis'example named "A_B_Kinetiks-1.png"
+ *
+ * Description     : ?
+ * Correctness     : ?
+ * Source          : Louis
+ * Author          : ?
+ * Modeling        : Étienne André
+ * Input by        : Étienne André
+ * License         : Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+ *
+ * Created         : 2017/03/29
+ * Last modified   : 2017/03/29
+ *
+ * IMITATOR version: 2.9
+ ************************************************************)
+
+var
+
+(* Clocks *)
+ 	x_A, x_B
+		: clock;
+
+(* Parameters *)
+	d_A_min, d_A_max,
+	d_B_min, d_B_max,
+		: parameter;
+
+
+
+(************************************************************)
+  automaton A
+(************************************************************)
+synclabs: activateA, activateB;
+
+loc inactive_A: while True wait {}
+	when True sync activateA do {x_A' = 0} goto activating_A;
+
+loc activating_A: while x_A <= d_A_max wait {}
+	when x_A >= d_A_min sync activateB do {x_A' = 0} goto active_A;
+
+loc active_A: while True wait {}
+end (* A *)
+
+
+(************************************************************)
+  automaton B
+(************************************************************)
+synclabs: activateB;
+
+loc inactive_B: while True wait {}
+	when True sync activateB do {x_B' = 0} goto activating_B;
+
+loc activating_B: while x_B <= d_B_max wait {}
+	when x_B >= d_B_min (*sync activateB*) do {x_B' = 0} goto active_B;
+
+loc active_B: while True wait {}
+end (* B *)
+
+
+
+(************************************************************)
+(* Initial state *)
+(************************************************************)
+
+init :=
+	(*------------------------------------------------------------*)
+	(* Initial location *)
+	(*------------------------------------------------------------*)
+	& loc[A] = inactive_A
+	& loc[B] = inactive_B
+
+	(*------------------------------------------------------------*)
+	(* Initial clock constraints *)
+	(*------------------------------------------------------------*)
+	& x_A = 0
+	& x_B = 0
+
+	(*------------------------------------------------------------*)
+	(* Parameter constraints *)
+	(*------------------------------------------------------------*)
+	& 0 <= d_A_min & d_A_min <= d_A_max
+	& 0 <= d_B_min & d_B_min <= d_B_max
+;
+
+
+(************************************************************)
+(* Property specification *)
+(************************************************************)
+
+(* property := unreachable loc[B] = active_B; *)
+
+
+(************************************************************)
+(* The end *)
+(************************************************************)
+end
