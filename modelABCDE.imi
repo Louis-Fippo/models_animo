@@ -1,0 +1,225 @@
+(********************************************************
+
+*              IMITATOR MODEL                          
+
+*Description: ?   
+*Correctness: ? 
+*Source: ?
+*Author: ?
+*Modeling: Louis Fippo Fitime \& Etienne André
+*Input by: Louis Fippo Fitime
+*Licence: Creative Commons ...
+*  
+*Created : 
+*Last modified : 
+*   
+* IMITATOR version : 2.9 
+***********************************************************)
+
+--model
+
+
+var 
+
+ (* Clocks *)
+ x_A, x_B, x_C, x_D, x_E x_A, x_B, x_C, x_D, x_E: clock; 
+
+(* Parameters *)
+d_A_min, d_A_max, 
+d_B_min, d_B_max, 
+d_C_min, d_C_max, 
+d_D_min, d_D_max, 
+d_E_min, d_E_maxd_A_min, d_A_max, 
+d_B_min, d_B_max, 
+d_C_min, d_C_max, 
+d_D_min, d_D_max, 
+d_E_min, d_E_max
+                    : parameters; 
+
+--automata new   
+
+(***************************************)
+  automaton A
+(***************************************)
+synclabs: activateA, activateB;
+
+loc inactive_A:  
+
+loc activating_A:  
+
+loc active_A:  
+
+end (* A new*)
+
+
+(***************************************)
+  automaton B
+(***************************************)
+synclabs: activateB, activateC, activateD;
+
+loc inactive_B:  
+
+loc activating_B:  
+
+loc active_B:  
+
+end (* B new*)
+
+
+(***************************************)
+  automaton C
+(***************************************)
+synclabs: activateC, activateB;
+
+loc inactive_C:  
+
+loc activating_C:  
+
+loc active_C:  
+
+end (* C new*)
+
+
+(***************************************)
+  automaton D
+(***************************************)
+synclabs: activateD;
+
+loc inactive_D:  
+
+loc activating_D:  
+
+loc active_D:  
+
+end (* D new*)
+
+
+(***************************************)
+  automaton E
+(***************************************)
+synclabs: activateE, activateD;
+
+loc inactive_E:  
+
+loc activating_E:  
+
+loc active_E:  
+
+end (* E new*)
+
+
+(***************************************)
+  automaton A
+(***************************************)
+synclabs: 
+
+loc inactive_A:  
+
+loc activating_A:  
+
+loc active_A:  
+
+end (* A *)
+
+
+(***************************************)
+  automaton B
+(***************************************)
+synclabs: 
+
+loc inactive_B:  
+
+loc activating_B:  
+
+loc active_B:  
+
+end (* B *)
+
+
+(***************************************)
+  automaton C
+(***************************************)
+synclabs: 
+
+loc inactive_C:  
+
+loc activating_C:  
+
+loc active_C:  
+
+end (* C *)
+
+
+(***************************************)
+  automaton D
+(***************************************)
+synclabs: 
+
+loc inactive_D:  
+
+loc activating_D:  
+
+loc active_D:  
+
+end (* D *)
+
+
+(***************************************)
+  automaton E
+(***************************************)
+synclabs: 
+
+loc inactive_E:  
+
+loc activating_E:  
+
+loc active_E:  
+
+end (* E *)
+
+
+(**************************************************)
+(* Initial state *)
+(**************************************************)
+init := 
+(*---------------------------------------------*)
+(* Initial location *)
+(*---------------------------------------------*)
+& loc [A] = active_A
+& loc [B] = inactive_B
+& loc [C] = inactive_C
+& loc [D] = inactive_D
+& loc [E] = active_E
+& loc [100] = active_100
+& loc [0] = inactive_0
+& loc [0] = inactive_0
+& loc [0] = inactive_0
+& loc [1] = active_1
+
+(*---------------------------------------------*)
+(* Initial clock constraints *)
+(*---------------------------------------------*)
+& x_A = 0 
+& x_B = 0 
+& x_C = 0 
+& x_D = 0 
+& x_E = 0 
+& x_A = 0 
+& x_B = 0 
+& x_C = 0 
+& x_D = 0 
+& x_E = 0 
+
+(*---------------------------------------------*)
+(* Parameter constraints *)
+(*---------------------------------------------*)
+& 0 <= d_A_min & d_A_min <= d_A_max 
+& 0 <= d_B_min & d_B_min <= d_B_max 
+& 0 <= d_C_min & d_C_min <= d_C_max 
+& 0 <= d_D_min & d_D_min <= d_D_max 
+& 0 <= d_E_min & d_E_min <= d_E_max 
+& 0 <= d_A_min & d_A_min <= d_A_max 
+& 0 <= d_B_min & d_B_min <= d_B_max 
+& 0 <= d_C_min & d_C_min <= d_C_max 
+& 0 <= d_D_min & d_D_min <= d_D_max 
+& 0 <= d_E_min & d_E_min <= d_E_max 

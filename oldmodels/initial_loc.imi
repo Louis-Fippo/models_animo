@@ -1,11 +1,6 @@
 (*---------------------------------------------*)
 (* Initial location *)
 (*---------------------------------------------*)
-& loc [A] = active_A
-& loc [B] = inactive_B
-& loc [C] = inactive_C
-& loc [D] = inactive_D
-& loc [E] = active_E
 & loc [100] = active_100
 & loc [0] = inactive_0
 & loc [0] = inactive_0

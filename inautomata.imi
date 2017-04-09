@@ -1,4 +1,74 @@
---automata   
+--automata new   
+
+(***************************************)
+  automaton A
+(***************************************)
+synclabs: activateA, activateB;
+
+loc inactive_A:  
+
+loc activating_A:  
+
+loc active_A:  
+
+end (* A new*)
+
+
+(***************************************)
+  automaton B
+(***************************************)
+synclabs: activateB, activateC, activateD;
+
+loc inactive_B:  
+
+loc activating_B:  
+
+loc active_B:  
+
+end (* B new*)
+
+
+(***************************************)
+  automaton C
+(***************************************)
+synclabs: activateC, activateB;
+
+loc inactive_C:  
+
+loc activating_C:  
+
+loc active_C:  
+
+end (* C new*)
+
+
+(***************************************)
+  automaton D
+(***************************************)
+synclabs: activateD;
+
+loc inactive_D:  
+
+loc activating_D:  
+
+loc active_D:  
+
+end (* D new*)
+
+
+(***************************************)
+  automaton E
+(***************************************)
+synclabs: activateE, activateD;
+
+loc inactive_E:  
+
+loc activating_E:  
+
+loc active_E:  
+
+end (* E new*)
+
 
 (***************************************)
   automaton A

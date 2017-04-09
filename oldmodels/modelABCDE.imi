@@ -1,0 +1,435 @@
+(********************************************************
+
+*              IMITATOR MODEL                          
+
+*Description: ?   
+*Correctness: ? 
+*Source: ?
+*Author: ?
+*Modeling: Louis Fippo Fitime \& Etienne André
+*Input by: Louis Fippo Fitime
+*Licence: Creative Commons ...
+*  
+*Created : 
+*Last modified : 
+*   
+* IMITATOR version : 2.9 
+***********************************************************)
+
+--model
+
+
+(************************************************************
+ *                      IMITATOR MODEL                      
+ *
+ * Tentative encoding of Louis'example named "A_B_Kinetiks-1.png"
+ *
+ * Description     : ?
+ * Correctness     : ?
+ * Source          : Louis
+ * Author          : ?
+ * Modeling        : Étienne André
+ * Input by        : Étienne André
+ * License         : Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+ *
+ * Created         : 2017/03/29
+ * Last modified   : 2017/03/29
+ *
+ * IMITATOR version: 2.9
+ ************************************************************)
+
+var
+
+(* Clocks *)
+ 	x_A, x_B
+		: clock;
+
+(* Parameters *)
+	d_A_min, d_A_max,
+	d_B_min, d_B_max,
+		: parameter;
+
+
+
+(************************************************************)
+  automaton A
+(************************************************************)
+synclabs: activateA, activateB;
+
+loc inactive_A: while True wait {}
+	when True sync activateA do {x_A' = 0} goto activating_A;
+
+loc activating_A: while x_A <= d_A_max wait {}
+	when x_A >= d_A_min sync activateB do {x_A' = 0} goto active_A;
+
+loc active_A: while True wait {}
+end (* A *)
+
+
+(************************************************************)
+  automaton B
+(************************************************************)
+synclabs: activateB;
+
+loc inactive_B: while True wait {}
+	when True sync activateB do {x_B' = 0} goto activating_B;
+
+loc activating_B: while x_B <= d_B_max wait {}
+	when x_B >= d_B_min (*sync activateB*) do {x_B' = 0} goto active_B;
+
+loc active_B: while True wait {}
+end (* B *)
+
+
+
+(************************************************************)
+(* Initial state *)
+(************************************************************)
+
+init :=
+	(*------------------------------------------------------------*)
+	(* Initial location *)
+	(*------------------------------------------------------------*)
+	& loc[A] = inactive_A
+	& loc[B] = inactive_B
+
+	(*------------------------------------------------------------*)
+	(* Initial clock constraints *)
+	(*------------------------------------------------------------*)
+	& x_A = 0
+	& x_B = 0
+
+	(*------------------------------------------------------------*)
+	(* Parameter constraints *)
+	(*------------------------------------------------------------*)
+	& 0 <= d_A_min & d_A_min <= d_A_max
+	& 0 <= d_B_min & d_B_min <= d_B_max
+;
+
+
+(************************************************************)
+(* Property specification *)
+(************************************************************)
+
+(* property := unreachable loc[B] = active_B; *)
+
+
+(************************************************************)
+(* The end *)
+(************************************************************)
+end
+var 
+
+ (* Clocks *)
+x_A,x_B,x_C,x_D,x_E: clock; 
+
+(* Parameters *)
+d_A_min, d_A_max, 
+d_B_min, d_B_max, 
+d_C_min, d_C_max, 
+d_D_min, d_D_max, 
+d_E_min, d_E_max
+                    : parameters; 
+
+--automata   
+
+(***************************************)
+  automaton A
+(***************************************)
+synclabs: 
+
+loc inactive_A:  
+
+loc activating_A:  
+
+loc active_A:  
+
+end (* A *)
+
+
+(***************************************)
+  automaton B
+(***************************************)
+synclabs: 
+
+loc inactive_B:  
+
+loc activating_B:  
+
+loc active_B:  
+
+end (* B *)
+
+
+(***************************************)
+  automaton C
+(***************************************)
+synclabs: 
+
+loc inactive_C:  
+
+loc activating_C:  
+
+loc active_C:  
+
+end (* C *)
+
+
+(***************************************)
+  automaton D
+(***************************************)
+synclabs: 
+
+loc inactive_D:  
+
+loc activating_D:  
+
+loc active_D:  
+
+end (* D *)
+
+
+(***************************************)
+  automaton E
+(***************************************)
+synclabs: 
+
+loc inactive_E:  
+
+loc activating_E:  
+
+loc active_E:  
+
+end (* E *)
+
+
+(**************************************************)
+(* Initial state *)
+(**************************************************)
+init := 
+(*---------------------------------------------*)
+(* Initial location *)
+(*---------------------------------------------*)
+& loc [100] = active_100
+& loc [0] = inactive_0
+& loc [0] = inactive_0
+& loc [0] = inactive_0
+& loc [1] = active_1
+
+(*---------------------------------------------*)
+(* Initial clock constraints *)
+(*---------------------------------------------*)
+& x_A = 0 
+& x_B = 0 
+& x_C = 0 
+& x_D = 0 
+& x_E = 0 
+(*---------------------------------------------*)
+(* Initial location *)
+(*---------------------------------------------*)
+& loc [100] = active_100
+& loc [0] = inactive_0
+& loc [0] = inactive_0
+& loc [0] = inactive_0
+& loc [1] = active_1
+
+(*---------------------------------------------*)
+(* Parameter constraints *)
+(*---------------------------------------------*)
+& 0 <= d_A_min & d_A_min <= d_A_max 
+& 0 <= d_B_min & d_B_min <= d_B_max 
+& 0 <= d_C_min & d_C_min <= d_C_max 
+& 0 <= d_D_min & d_D_min <= d_D_max 
+& 0 <= d_E_min & d_E_min <= d_E_max 
+(********************************************************
+
+*              IMITATOR MODEL                          
+
+*Description: ?   
+*Correctness: ? 
+*Source: ?
+*Author: ?
+*Modeling: Louis Fippo Fitime \& Etienne André
+*Input by: Louis Fippo Fitime
+*Licence: Creative Commons ...
+*  
+*Created : 
+*Last modified : 
+*   
+* IMITATOR version : 2.9 
+***********************************************************)
+
+--model
+
+
+(************************************************************
+ *                      IMITATOR MODEL                      
+ *
+ * Tentative encoding of Louis'example named "A_B_Kinetiks-1.png"
+ *
+ * Description     : ?
+ * Correctness     : ?
+ * Source          : Louis
+ * Author          : ?
+ * Modeling        : Étienne André
+ * Input by        : Étienne André
+ * License         : Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+ *
+ * Created         : 2017/03/29
+ * Last modified   : 2017/03/29
+ *
+ * IMITATOR version: 2.9
+ ************************************************************)
+
+var
+
+(* Clocks *)
+ 	x_A, x_B
+		: clock;
+
+(* Parameters *)
+	d_A_min, d_A_max,
+	d_B_min, d_B_max,
+		: parameter;
+
+
+
+(************************************************************)
+  automaton A
+(************************************************************)
+synclabs: activateA, activateB;
+
+loc inactive_A: while True wait {}
+	when True sync activateA do {x_A' = 0} goto activating_A;
+
+loc activating_A: while x_A <= d_A_max wait {}
+	when x_A >= d_A_min sync activateB do {x_A' = 0} goto active_A;
+
+loc active_A: while True wait {}
+end (* A *)
+
+
+(************************************************************)
+  automaton B
+(************************************************************)
+synclabs: activateB;
+
+loc inactive_B: while True wait {}
+	when True sync activateB do {x_B' = 0} goto activating_B;
+
+loc activating_B: while x_B <= d_B_max wait {}
+	when x_B >= d_B_min (*sync activateB*) do {x_B' = 0} goto active_B;
+
+loc active_B: while True wait {}
+end (* B *)
+
+
+
+(************************************************************)
+(* Initial state *)
+(************************************************************)
+
+init :=
+	(*------------------------------------------------------------*)
+	(* Initial location *)
+	(*------------------------------------------------------------*)
+	& loc[A] = inactive_A
+	& loc[B] = inactive_B
+
+	(*------------------------------------------------------------*)
+	(* Initial clock constraints *)
+	(*------------------------------------------------------------*)
+	& x_A = 0
+	& x_B = 0
+
+	(*------------------------------------------------------------*)
+	(* Parameter constraints *)
+	(*------------------------------------------------------------*)
+	& 0 <= d_A_min & d_A_min <= d_A_max
+	& 0 <= d_B_min & d_B_min <= d_B_max
+;
+
+
+(************************************************************)
+(* Property specification *)
+(************************************************************)
+
+(* property := unreachable loc[B] = active_B; *)
+
+
+(************************************************************)
+(* The end *)
+(************************************************************)
+end
+var 
+
+ (* Clocks *)
+x_A,x_B,x_C,x_D,x_E: clock; 
+
+(* Parameters *)
+d_A_min, d_A_max, 
+d_B_min, d_B_max, 
+d_C_min, d_C_max, 
+d_D_min, d_D_max, 
+d_E_min, d_E_max
+                    : parameters; 
+
+--automata   
+
+(***************************************)
+  automaton A
+(***************************************)
+synclabs: 
+
+loc inactive_A:  
+
+loc activating_A:  
+
+loc active_A:  
+
+end (* A *)
+
+
+(***************************************)
+  automaton B
+(***************************************)
+synclabs: 
+
+loc inactive_B:  
+
+loc activating_B:  
+
+loc active_B:  
+
+end (* B *)
+
+
+(***************************************)
+  automaton C
+(***************************************)
+synclabs: 
+
+loc inactive_C:  
+
+loc activating_C:  
+
+loc active_C:  
+
+end (* C *)
+
+
+(***************************************)
+  automaton D
+(***************************************)
+synclabs: 
+
+loc inactive_D:  
+
+loc activating_D:  
+
+loc active_D:  
+
+end (* D *)
+
+
+(**********************

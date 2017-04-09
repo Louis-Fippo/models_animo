@@ -1,0 +1,5 @@
+var 
+
+ (* Clocks *)
+x_A,x_B,x_C,x_D,x_E: clock; 
+
