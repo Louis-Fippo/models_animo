@@ -7,8 +7,5 @@
 & 0 <= d_C_min & d_C_min <= d_C_max 
 & 0 <= d_D_min & d_D_min <= d_D_max 
 & 0 <= d_E_min & d_E_min <= d_E_max 
-& 0 <= d_A_min & d_A_min <= d_A_max 
-& 0 <= d_B_min & d_B_min <= d_B_max 
-& 0 <= d_C_min & d_C_min <= d_C_max 
-& 0 <= d_D_min & d_D_min <= d_D_max 
-& 0 <= d_E_min & d_E_min <= d_E_max 
+
+;

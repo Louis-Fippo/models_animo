@@ -1,0 +1,167 @@
+(********************************************************
+
+*              IMITATOR MODEL                          
+
+*Description: ?   
+*Correctness: ? 
+*Source: ?
+*Author: ?
+*Modeling: Louis Fippo Fitime \& Etienne André
+*Input by: Louis Fippo Fitime
+*Licence: Creative Commons ...
+*  
+*Created : 
+*Last modified : 
+*   
+* IMITATOR version : 2.9 
+***********************************************************)
+
+--model
+
+
+var 
+
+ (* Clocks *)
+ x_A, x_B, x_C, x_D, x_E: clock; 
+
+(* Parameters *)
+d_A_min, d_A_max, 
+d_B_min, d_B_max, 
+d_C_min, d_C_max, 
+d_D_min, d_D_max, 
+d_E_min, d_E_max,
+                    : parameter; 
+
+--automata new   
+
+(***************************************)
+  automaton A
+(***************************************)
+synclabs: activateA, inhibateA, activateB;
+
+loc inactive_A: while True wait {} 
+          when True  sync activateA do {x_A' = 0} goto activating_A;
+
+loc activating_A: while x_A <= d_A_max wait {} 
+            when x_A >= d_A_min sync activateB do {x_A' = 0} goto active_A; 
+
+loc inhibiting_A: while x_A >= d_A_min wait {}
+            when x_A < d_A_max sync inhibateA do {x_A' = 0} goto inactive_A; 
+
+loc active_A: while True wait {} 
+            when True sync inhibateA do {x_A' = 0} goto inhibiting_A;
+
+end (* A new*)
+
+
+(***************************************)
+  automaton B
+(***************************************)
+synclabs: activateB, inhibateB, activateC, activateD;
+
+loc inactive_B: while True wait {} 
+          when True  sync activateB do {x_B' = 0} goto activating_B;
+
+loc activating_B: while x_B <= d_B_max wait {} 
+            when x_B >= d_B_min (*sync activateC, activateD *) do {x_B' = 0} goto active_B; 
+
+loc inhibiting_B: while x_B >= d_B_min wait {}
+            when x_B < d_B_max sync inhibateB do {x_B' = 0} goto inactive_B; 
+
+loc active_B: while True wait {} 
+            when True sync inhibateB do {x_B' = 0} goto inhibiting_B;
+
+end (* B new*)
+
+
+(***************************************)
+  automaton C
+(***************************************)
+synclabs: activateC, inhibateC, inhibateB;
+
+loc inactive_C: while True wait {} 
+          when True  sync activateC do {x_C' = 0} goto activating_C;
+
+loc activating_C: while x_C <= d_C_max wait {} 
+            when x_C >= d_C_min sync activateC do {x_C' = 0} goto active_C; 
+
+loc inhibiting_C: while x_C >= d_C_min wait {}
+            when x_C < d_C_max sync inhibateB do {x_C' = 0} goto inactive_C; 
+
+loc active_C: while True wait {} 
+            when True sync inhibateC do {x_C' = 0} goto inhibiting_C;
+
+end (* C new*)
+
+
+(***************************************)
+  automaton D
+(***************************************)
+synclabs: activateD, inhibateD;
+
+loc inactive_D: while True wait {} 
+          when True  sync activateD do {x_D' = 0} goto activating_D;
+
+loc activating_D: while x_D <= d_D_max wait {} 
+            when x_D >= d_D_min sync activateD do {x_D' = 0} goto active_D; 
+
+loc inhibiting_D: while x_D >= d_D_min wait {}
+            when x_D < d_D_max sync inhibateD do {x_D' = 0} goto inactive_D; 
+
+loc active_D: while True wait {} 
+            when True sync inhibateD do {x_D' = 0} goto inhibiting_D;
+
+end (* D new*)
+
+
+(***************************************)
+  automaton E
+(***************************************)
+synclabs: activateE, inhibateE, inhibateD;
+
+loc inactive_E: while True wait {} 
+          when True  sync activateE do {x_E' = 0} goto activating_E;
+
+loc activating_E: while x_E <= d_E_max wait {} 
+            when x_E >= d_E_min sync activateE do {x_E' = 0} goto active_E; 
+
+loc inhibiting_E: while x_E >= d_E_min wait {}
+            when x_E < d_E_max sync inhibateD do {x_E' = 0} goto inactive_E; 
+
+loc active_E: while True wait {} 
+            when True sync inhibateE do {x_E' = 0} goto inhibiting_E;
+
+end (* E new*)
+
+
+(**************************************************)
+(* Initial state *)
+(**************************************************)
+init := 
+(*---------------------------------------------*)
+(* Initial location *)
+(*---------------------------------------------*)
+& loc [A] = active_A
+& loc [B] = inactive_B
+& loc [C] = inactive_C
+& loc [D] = inactive_D
+& loc [E] = active_E
+
+(*---------------------------------------------*)
+(* Initial clock constraints *)
+(*---------------------------------------------*)
+& x_A = 0 
+& x_B = 0 
+& x_C = 0 
+& x_D = 0 
+& x_E = 0 
+
+(*---------------------------------------------*)
+(* Parameter constraints *)
+(*---------------------------------------------*)
+& 0 <= d_A_min & d_A_min <= d_A_max 
+& 0 <= d_B_min & d_B_min <= d_B_max 
+& 0 <= d_C_min & d_C_min <= d_C_max 
+& 0 <= d_D_min & d_D_min <= d_D_max 
+& 0 <= d_E_min & d_E_min <= d_E_max 
+;
