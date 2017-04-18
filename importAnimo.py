@@ -14,11 +14,11 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("-p","--parameters", help = "parameters to be estimated", action = "store_true")
 parser.add_argument("-m","--mode", help = "chose the cooperation mode between many component having a concurrent action", action = "store_true")
-parser.add_argument("-i","--input-model",  help = "input model", action = "store_true")
+parser.add_argument("-i","--model",  help = "input model", action = "store_true")
 parser.add_argument("-v","--verbose", help="increase output verbosity", action = "store_true")
 args = parser.parse_args()
 
-if args.verbose:
+if args.model:
 
 	model = open("modelABCDE.imi","wra")
 	
@@ -201,23 +201,40 @@ if args.verbose:
 	    for suc in modelGraph.getSucc(node):
 	      if modelGraph.activation(node.SUID,suc.SUID):
 		automata.write(", activate"+suc.canonicalName)
-		syncact = syncact+", activate"+suc.canonicalName
+		syncact = syncact+",activate"+suc.canonicalName
 	      else:
 		automata.write(", inhibate"+suc.canonicalName)
-		syncinh = syncinh+", inhibate"+suc.canonicalName
+		syncinh = syncinh+",inhibate"+suc.canonicalName
 	    
 	    automata.write(";\n\n")
+            syncact.split(",")
+	    for elt in syncact.split(","):
+
+                print("syncact",elt)
+	    
 
 	    #ajout des transitions
+	    #loc inactive
 	    automata.write("loc "+"inactive_"+node.canonicalName+": while True wait {} \n")
 	    automata.write("          when True  sync activate"+node.canonicalName+" do {x_"+node.canonicalName+"' = 0} goto activating_"+node.canonicalName+";\n\n")
-	    #
+	    
+	    
+	    #loc activating
 	    automata.write("loc "+"activating_"+node.canonicalName+": while x_"+node.canonicalName+" <= d_"+node.canonicalName+"_max wait {} \n")
-	    automata.write("            when x_"+node.canonicalName+" >= d_"+node.canonicalName+"_min (* sync"+syncact+"*) do {x_"+node.canonicalName+"' = 0} goto active_"+node.canonicalName+"; \n\n")   
-
+	    for elt in syncact.split(","):
+	      if elt!= "":
+	         automata.write("            when x_"+node.canonicalName+" >= d_"+node.canonicalName+"_min  sync "+elt+" do {x_"+node.canonicalName+"' = 0} goto active_"+node.canonicalName+"; \n")   
+            
+	    #loc inhibiting
+	    automata.write("\n")
 	    automata.write("loc "+"inhibiting_"+node.canonicalName+": while x_"+node.canonicalName+" >= d_"+node.canonicalName+"_min wait {}\n")
-	    automata.write("            when x_"+node.canonicalName+" < d_"+node.canonicalName+"_max (* sync"+syncinh+"*) do {x_"+node.canonicalName+"' = 0} goto inactive_"+node.canonicalName+"; \n\n")    
+	    for elt in syncinh.split(","):
+	       if elt != "":
+	          automata.write("            when x_"+node.canonicalName+" < d_"+node.canonicalName+"_max  sync"+elt+" do {x_"+node.canonicalName+"' = 0} goto inactive_"+node.canonicalName+"; \n\n")    
 
+            
+	    #loc active
+	    automata.write("\n")
 	    automata.write("loc "+"active_"+node.canonicalName+": while True wait {} \n")
 	    automata.write("            when True sync inhibate"+node.canonicalName+" do {x_"+node.canonicalName+"' = 0} goto inhibiting_"+node.canonicalName+";\n\n")
 	    
