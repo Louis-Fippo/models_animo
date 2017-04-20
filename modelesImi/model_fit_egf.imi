@@ -1,0 +1,175 @@
+(********************************************************
+
+*              IMITATOR MODEL                          
+
+*Description: ?   
+*Correctness: ? 
+*Source: ?
+*Author: ?
+*Modeling: Louis Fippo Fitime \& Etienne André
+*Input by: Louis Fippo Fitime
+*Licence: Creative Commons ...
+*  
+*Created : 
+*Last modified : 
+*   
+* IMITATOR version : 2.9 
+***********************************************************)
+
+--model
+
+
+var 
+
+ (* Clocks *)
+ x_ERK_phosphatase, x_ERK, x_EGFR_internalization, x_EGFR, x_EGF: clock; 
+
+(* Parameters *)
+d_ERK_phosphatase_min, d_ERK_phosphatase_max, 
+d_ERK_min, d_ERK_max, 
+d_EGFR_internalization_min, d_EGFR_internalization_max, 
+d_EGFR_min, d_EGFR_max, 
+d_EGF_min, d_EGF_max
+                    : parameter; 
+
+--automata new   
+
+(***************************************)
+  automaton ERK_phosphatase
+(***************************************)
+synclabs: activateERK_phosphatase, inhibateERK_phosphatase, inhibateERK;
+
+loc inactive_ERK_phosphatase: while True wait {} 
+          when True  sync activateERK_phosphatase do {x_ERK_phosphatase' = 0} goto activating_ERK_phosphatase;
+
+loc activating_ERK_phosphatase: while x_ERK_phosphatase <= d_ERK_phosphatase_max wait {} 
+            when x_ERK_phosphatase >= d_ERK_phosphatase_min do {x_ERK_phosphatase' = 0} goto active_ERK_phosphatase; 
+
+loc inhibiting_ERK_phosphatase: while x_ERK_phosphatase >= d_ERK_phosphatase_min wait {}
+           when x_ERK_phosphatase < d_ERK_phosphatase_max do {x_ERK_phosphatase' = 0} goto inactive_ERK_phosphatase; 
+            when x_ERK_phosphatase < d_ERK_phosphatase_max  sync inhibateERK do {x_ERK_phosphatase' = 0} goto inactive_ERK_phosphatase; 
+
+
+loc active_ERK_phosphatase: while True wait {} 
+            when True sync inhibateERK_phosphatase do {x_ERK_phosphatase' = 0} goto inhibiting_ERK_phosphatase;
+
+end (* ERK_phosphatase new*)
+
+
+(***************************************)
+  automaton ERK
+(***************************************)
+synclabs: activateERK, inhibateERK;
+
+loc inactive_ERK: while True wait {} 
+          when True  sync activateERK do {x_ERK' = 0} goto activating_ERK;
+
+loc activating_ERK: while x_ERK <= d_ERK_max wait {} 
+            when x_ERK >= d_ERK_min do {x_ERK' = 0} goto active_ERK; 
+
+loc inhibiting_ERK: while x_ERK >= d_ERK_min wait {}
+           when x_ERK < d_ERK_max do {x_ERK' = 0} goto inactive_ERK; 
+
+loc active_ERK: while True wait {} 
+            when True sync inhibateERK do {x_ERK' = 0} goto inhibiting_ERK;
+
+end (* ERK new*)
+
+
+(***************************************)
+  automaton EGFR_internalization
+(***************************************)
+synclabs: activateEGFR_internalization, inhibateEGFR_internalization, inhibateEGFR;
+
+loc inactive_EGFR_internalization: while True wait {} 
+          when True  sync activateEGFR_internalization do {x_EGFR_internalization' = 0} goto activating_EGFR_internalization;
+
+loc activating_EGFR_internalization: while x_EGFR_internalization <= d_EGFR_internalization_max wait {} 
+            when x_EGFR_internalization >= d_EGFR_internalization_min do {x_EGFR_internalization' = 0} goto active_EGFR_internalization; 
+
+loc inhibiting_EGFR_internalization: while x_EGFR_internalization >= d_EGFR_internalization_min wait {}
+           when x_EGFR_internalization < d_EGFR_internalization_max do {x_EGFR_internalization' = 0} goto inactive_EGFR_internalization; 
+            when x_EGFR_internalization < d_EGFR_internalization_max  sync inhibateEGFR do {x_EGFR_internalization' = 0} goto inactive_EGFR_internalization; 
+
+
+loc active_EGFR_internalization: while True wait {} 
+            when True sync inhibateEGFR_internalization do {x_EGFR_internalization' = 0} goto inhibiting_EGFR_internalization;
+
+end (* EGFR_internalization new*)
+
+
+(***************************************)
+  automaton EGFR
+(***************************************)
+synclabs: activateEGFR, inhibateEGFR, activateERK, activateEGFR_internalization;
+
+loc inactive_EGFR: while True wait {} 
+          when True  sync activateEGFR do {x_EGFR' = 0} goto activating_EGFR;
+
+loc activating_EGFR: while x_EGFR <= d_EGFR_max wait {} 
+            when x_EGFR >= d_EGFR_min do {x_EGFR' = 0} goto active_EGFR; 
+            when x_EGFR >= d_EGFR_min  sync activateERK do {x_EGFR' = 0} goto active_EGFR; 
+            when x_EGFR >= d_EGFR_min  sync activateEGFR_internalization do {x_EGFR' = 0} goto active_EGFR; 
+
+loc inhibiting_EGFR: while x_EGFR >= d_EGFR_min wait {}
+           when x_EGFR < d_EGFR_max do {x_EGFR' = 0} goto inactive_EGFR; 
+
+loc active_EGFR: while True wait {} 
+            when True sync inhibateEGFR do {x_EGFR' = 0} goto inhibiting_EGFR;
+
+end (* EGFR new*)
+
+
+(***************************************)
+  automaton EGF
+(***************************************)
+synclabs: activateEGF, inhibateEGF, activateEGFR;
+
+loc inactive_EGF: while True wait {} 
+          when True  sync activateEGF do {x_EGF' = 0} goto activating_EGF;
+
+loc activating_EGF: while x_EGF <= d_EGF_max wait {} 
+            when x_EGF >= d_EGF_min do {x_EGF' = 0} goto active_EGF; 
+            when x_EGF >= d_EGF_min  sync activateEGFR do {x_EGF' = 0} goto active_EGF; 
+
+loc inhibiting_EGF: while x_EGF >= d_EGF_min wait {}
+           when x_EGF < d_EGF_max do {x_EGF' = 0} goto inactive_EGF; 
+
+loc active_EGF: while True wait {} 
+            when True sync inhibateEGF do {x_EGF' = 0} goto inhibiting_EGF;
+
+end (* EGF new*)
+
+
+(**************************************************)
+(* Initial state *)
+(**************************************************)
+init := 
+(*---------------------------------------------*)
+(* Initial location *)
+(*---------------------------------------------*)
+& loc [ERK_phosphatase] = active_ERK_phosphatase
+& loc [ERK] = inactive_ERK
+& loc [EGFR_internalization] = inactive_EGFR_internalization
+& loc [EGFR] = inactive_EGFR
+& loc [EGF] = active_EGF
+
+(*---------------------------------------------*)
+(* Initial clock constraints *)
+(*---------------------------------------------*)
+& x_ERK_phosphatase = 0 
+& x_ERK = 0 
+& x_EGFR_internalization = 0 
+& x_EGFR = 0 
+& x_EGF = 0 
+
+(*---------------------------------------------*)
+(* Parameter constraints *)
+(*---------------------------------------------*)
+& 0 <= d_ERK_phosphatase_min & d_ERK_phosphatase_min <= d_ERK_phosphatase_max 
+& 0 <= d_ERK_min & d_ERK_min <= d_ERK_max 
+& 0 <= d_EGFR_internalization_min & d_EGFR_internalization_min <= d_EGFR_internalization_max 
+& 0 <= d_EGFR_min & d_EGFR_min <= d_EGFR_max 
+& 0 <= d_EGF_min & d_EGF_min <= d_EGF_max 
+
+;

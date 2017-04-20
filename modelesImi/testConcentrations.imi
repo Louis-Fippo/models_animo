@@ -1,0 +1,138 @@
+(************************************************************
+ *                      IMITATOR MODEL                      
+ *
+ * Test to encode the model "model base" on the ANIMO Web interface
+ *
+ * Description     : Small biological model
+ * Correctness     : ?
+ * Source          : ANIMO Web interface (2017/04/18)
+ * Author          : ANIMO
+ * Modeling        : ANIMO + Étienne André + Louis Fippo Fitime
+ * Input by        : Étienne André + Louis Fippo Fitime
+ * License         : Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+ *
+ * Created         : 2017/04/18
+ * Last modified   : 2017/04/18
+ *
+ * IMITATOR version: 2.9
+ ************************************************************)
+
+var
+
+(* Clocks *)
+ 	tick,
+(*  	t, *)
+		: clock;
+
+(* Discrete *)
+	cEGF = 100, cEGFRi, cEGFR, cERK, cERKp = 1
+		: discrete;
+
+(* Parameters *)
+(*	p
+		: parameter;*)
+
+(* Constants *)
+	kEGFRi = -0.008,
+	kEGF = 0.004,
+	
+	TIMEBOUND = 600,
+		: constant;
+
+
+
+(************************************************************)
+  automaton tick
+(************************************************************)
+synclabs: tick;
+
+loc l1: while tick <= 1 (*& t <= TIMEBOUND*) wait {}
+	when tick = 1 sync tick do {tick' = 0} goto l1;
+
+end (* pta *)
+
+(************************************************************)
+  automaton EGFR
+(************************************************************)
+synclabs: tick;
+
+loc l1: while True wait {}
+	when True sync tick do {cEGFR' = cEGFR + (*kEGFRi **)-0.008 cEGFRi + (*kEGF **)0.004 cEGF} goto l1;
+
+end (* pta *)
+
+
+(************************************************************)
+  automaton EGFRi
+(************************************************************)
+synclabs: tick;
+
+loc l1: while True wait {}
+	when True sync tick do {cEGFRi' = cEGFRi + 0.004 cEGFR} goto l1;
+
+end (* pta *)
+
+
+(************************************************************)
+  automaton ERK
+(************************************************************)
+synclabs: tick;
+
+loc l1: while True wait {}
+	when True sync tick do {cERK' = cERK + 0.004 cEGFR - 0.001 cERKp} goto l1;
+
+end (* pta *)
+
+
+
+
+
+
+
+
+
+(************************************************************)
+(* Initial state *)
+(************************************************************)
+
+init :=
+	(*------------------------------------------------------------*)
+	(* Initial location *)
+	(*------------------------------------------------------------*)
+	& loc[tick] = l1
+	& loc[EGFR] = l1
+	& loc[EGFRi] = l1
+	& loc[ERK] = l1
+
+	(*------------------------------------------------------------*)
+	(* Initial discrete assignments *)
+	(*------------------------------------------------------------*)
+	& cEGF = 100
+	& cEGFRi = 0
+	& cEGFR = 0
+	& cERK = 0
+	& cERKp = 1
+
+	(*------------------------------------------------------------*)
+	(* Initial clock constraints *)
+	(*------------------------------------------------------------*)
+	& tick = 0
+
+	(*------------------------------------------------------------*)
+	(* Parameter constraints *)
+	(*------------------------------------------------------------*)
+(* 	& p >= 0 *)
+;
+
+
+(************************************************************)
+(* Property specification *)
+(************************************************************)
+
+(* property := unreachable loc[pta] = l1; *)
+
+
+(************************************************************)
+(* The end *)
+(************************************************************)
+end

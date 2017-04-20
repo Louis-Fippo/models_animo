@@ -1,99 +1,109 @@
 --automata new   
 
 (***************************************)
-  automaton A
+  automaton ERK_phosphatase
 (***************************************)
-synclabs: activateA, inhibateA, activateB;
+synclabs: activateERK_phosphatase, inhibateERK_phosphatase, inhibateERK;
 
-loc inactive_A: while True wait {} 
-          when True  sync activateA do {x_A' = 0} goto activating_A;
+loc inactive_ERK_phosphatase: while True wait {} 
+          when True  sync activateERK_phosphatase do {x_ERK_phosphatase' = 0} goto activating_ERK_phosphatase;
 
-loc activating_A: while x_A <= d_A_max wait {} 
-            when x_A >= d_A_min  sync activateB do {x_A' = 0} goto active_A; 
+loc activating_ERK_phosphatase: while x_ERK_phosphatase <= d_ERK_phosphatase_max wait {} 
+            when x_ERK_phosphatase >= d_ERK_phosphatase_min do {x_ERK_phosphatase' = 0} goto active_ERK_phosphatase; 
 
-loc inhibiting_A: while x_A >= d_A_min wait {}
-
-loc active_A: while True wait {} 
-            when True sync inhibateA do {x_A' = 0} goto inhibiting_A;
-
-end (* A new*)
+loc inhibiting_ERK_phosphatase: while x_ERK_phosphatase >= d_ERK_phosphatase_min wait {}
+           when x_ERK_phosphatase < d_ERK_phosphatase_max do {x_ERK_phosphatase' = 0} goto inactive_ERK_phosphatase; 
+            when x_ERK_phosphatase < d_ERK_phosphatase_max  sync inhibateERK do {x_ERK_phosphatase' = 0} goto inactive_ERK_phosphatase; 
 
 
-(***************************************)
-  automaton B
-(***************************************)
-synclabs: activateB, inhibateB, activateC, activateD;
+loc active_ERK_phosphatase: while True wait {} 
+            when True sync inhibateERK_phosphatase do {x_ERK_phosphatase' = 0} goto inhibiting_ERK_phosphatase;
 
-loc inactive_B: while True wait {} 
-          when True  sync activateB do {x_B' = 0} goto activating_B;
-
-loc activating_B: while x_B <= d_B_max wait {} 
-            when x_B >= d_B_min  sync activateC do {x_B' = 0} goto active_B; 
-            when x_B >= d_B_min  sync activateD do {x_B' = 0} goto active_B; 
-
-loc inhibiting_B: while x_B >= d_B_min wait {}
-
-loc active_B: while True wait {} 
-            when True sync inhibateB do {x_B' = 0} goto inhibiting_B;
-
-end (* B new*)
+end (* ERK_phosphatase new*)
 
 
 (***************************************)
-  automaton C
+  automaton ERK
 (***************************************)
-synclabs: activateC, inhibateC, inhibateB;
+synclabs: activateERK, inhibateERK;
 
-loc inactive_C: while True wait {} 
-          when True  sync activateC do {x_C' = 0} goto activating_C;
+loc inactive_ERK: while True wait {} 
+          when True  sync activateERK do {x_ERK' = 0} goto activating_ERK;
 
-loc activating_C: while x_C <= d_C_max wait {} 
+loc activating_ERK: while x_ERK <= d_ERK_max wait {} 
+            when x_ERK >= d_ERK_min do {x_ERK' = 0} goto active_ERK; 
 
-loc inhibiting_C: while x_C >= d_C_min wait {}
-            when x_C < d_C_max  syncinhibateB do {x_C' = 0} goto inactive_C; 
+loc inhibiting_ERK: while x_ERK >= d_ERK_min wait {}
+           when x_ERK < d_ERK_max do {x_ERK' = 0} goto inactive_ERK; 
 
+loc active_ERK: while True wait {} 
+            when True sync inhibateERK do {x_ERK' = 0} goto inhibiting_ERK;
 
-loc active_C: while True wait {} 
-            when True sync inhibateC do {x_C' = 0} goto inhibiting_C;
-
-end (* C new*)
-
-
-(***************************************)
-  automaton D
-(***************************************)
-synclabs: activateD, inhibateD;
-
-loc inactive_D: while True wait {} 
-          when True  sync activateD do {x_D' = 0} goto activating_D;
-
-loc activating_D: while x_D <= d_D_max wait {} 
-
-loc inhibiting_D: while x_D >= d_D_min wait {}
-
-loc active_D: while True wait {} 
-            when True sync inhibateD do {x_D' = 0} goto inhibiting_D;
-
-end (* D new*)
+end (* ERK new*)
 
 
 (***************************************)
-  automaton E
+  automaton EGFR_internalization
 (***************************************)
-synclabs: activateE, inhibateE, inhibateD;
+synclabs: activateEGFR_internalization, inhibateEGFR_internalization, inhibateEGFR;
 
-loc inactive_E: while True wait {} 
-          when True  sync activateE do {x_E' = 0} goto activating_E;
+loc inactive_EGFR_internalization: while True wait {} 
+          when True  sync activateEGFR_internalization do {x_EGFR_internalization' = 0} goto activating_EGFR_internalization;
 
-loc activating_E: while x_E <= d_E_max wait {} 
+loc activating_EGFR_internalization: while x_EGFR_internalization <= d_EGFR_internalization_max wait {} 
+            when x_EGFR_internalization >= d_EGFR_internalization_min do {x_EGFR_internalization' = 0} goto active_EGFR_internalization; 
 
-loc inhibiting_E: while x_E >= d_E_min wait {}
-            when x_E < d_E_max  syncinhibateD do {x_E' = 0} goto inactive_E; 
+loc inhibiting_EGFR_internalization: while x_EGFR_internalization >= d_EGFR_internalization_min wait {}
+           when x_EGFR_internalization < d_EGFR_internalization_max do {x_EGFR_internalization' = 0} goto inactive_EGFR_internalization; 
+            when x_EGFR_internalization < d_EGFR_internalization_max  sync inhibateEGFR do {x_EGFR_internalization' = 0} goto inactive_EGFR_internalization; 
 
 
-loc active_E: while True wait {} 
-            when True sync inhibateE do {x_E' = 0} goto inhibiting_E;
+loc active_EGFR_internalization: while True wait {} 
+            when True sync inhibateEGFR_internalization do {x_EGFR_internalization' = 0} goto inhibiting_EGFR_internalization;
 
-end (* E new*)
+end (* EGFR_internalization new*)
+
+
+(***************************************)
+  automaton EGFR
+(***************************************)
+synclabs: activateEGFR, inhibateEGFR, activateERK, activateEGFR_internalization;
+
+loc inactive_EGFR: while True wait {} 
+          when True  sync activateEGFR do {x_EGFR' = 0} goto activating_EGFR;
+
+loc activating_EGFR: while x_EGFR <= d_EGFR_max wait {} 
+            when x_EGFR >= d_EGFR_min do {x_EGFR' = 0} goto active_EGFR; 
+            when x_EGFR >= d_EGFR_min  sync activateERK do {x_EGFR' = 0} goto active_EGFR; 
+            when x_EGFR >= d_EGFR_min  sync activateEGFR_internalization do {x_EGFR' = 0} goto active_EGFR; 
+
+loc inhibiting_EGFR: while x_EGFR >= d_EGFR_min wait {}
+           when x_EGFR < d_EGFR_max do {x_EGFR' = 0} goto inactive_EGFR; 
+
+loc active_EGFR: while True wait {} 
+            when True sync inhibateEGFR do {x_EGFR' = 0} goto inhibiting_EGFR;
+
+end (* EGFR new*)
+
+
+(***************************************)
+  automaton EGF
+(***************************************)
+synclabs: activateEGF, inhibateEGF, activateEGFR;
+
+loc inactive_EGF: while True wait {} 
+          when True  sync activateEGF do {x_EGF' = 0} goto activating_EGF;
+
+loc activating_EGF: while x_EGF <= d_EGF_max wait {} 
+            when x_EGF >= d_EGF_min do {x_EGF' = 0} goto active_EGF; 
+            when x_EGF >= d_EGF_min  sync activateEGFR do {x_EGF' = 0} goto active_EGF; 
+
+loc inhibiting_EGF: while x_EGF >= d_EGF_min wait {}
+           when x_EGF < d_EGF_max do {x_EGF' = 0} goto inactive_EGF; 
+
+loc active_EGF: while True wait {} 
+            when True sync inhibateEGF do {x_EGF' = 0} goto inhibiting_EGF;
+
+end (* EGF new*)
 
 

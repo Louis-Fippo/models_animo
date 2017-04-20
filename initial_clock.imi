@@ -2,8 +2,8 @@
 (*---------------------------------------------*)
 (* Initial clock constraints *)
 (*---------------------------------------------*)
-& x_A = 0 
-& x_B = 0 
-& x_C = 0 
-& x_D = 0 
-& x_E = 0 
+& x_ERK_phosphatase = 0 
+& x_ERK = 0 
+& x_EGFR_internalization = 0 
+& x_EGFR = 0 
+& x_EGF = 0 

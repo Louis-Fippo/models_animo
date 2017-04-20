@@ -1,8 +1,8 @@
 (*---------------------------------------------*)
 (* Initial location *)
 (*---------------------------------------------*)
-& loc [A] = active_A
-& loc [B] = inactive_B
-& loc [C] = inactive_C
-& loc [D] = inactive_D
-& loc [E] = active_E
+& loc [ERK_phosphatase] = active_ERK_phosphatase
+& loc [ERK] = inactive_ERK
+& loc [EGFR_internalization] = inactive_EGFR_internalization
+& loc [EGFR] = inactive_EGFR
+& loc [EGF] = active_EGF

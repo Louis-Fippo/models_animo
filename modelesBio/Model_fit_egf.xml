@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphml>
+    <key attr.name="SUID" attr.type="long" for="node" id="SUID"/>
+    <key attr.name="shared name" attr.type="string" for="node" id="shared name"/>
+    <key attr.name="name" attr.type="string" for="node" id="name"/>
+    <key attr.name="selected" attr.type="boolean" for="node" id="selected"/>
+    <key attr.name="NODE_TYPE" attr.type="string" for="node" id="NODE_TYPE"/>
+    <key attr.name="Position.X" attr.type="double" for="node" id="Position.X"/>
+    <key attr.name="Position.Y" attr.type="double" for="node" id="Position.Y"/>
+    <key attr.name="activityRatio" attr.type="double" for="node" id="activityRatio"/>
+    <key attr.name="canonicalName" attr.type="string" for="node" id="canonicalName"/>
+    <key attr.name="description" attr.type="string" for="node" id="description"/>
+    <key attr.name="enabled" attr.type="boolean" for="node" id="enabled"/>
+    <key attr.name="initialConcentration" attr.type="int" for="node" id="initialConcentration"/>
+    <key attr.name="levels" attr.type="int" for="node" id="levels"/>
+    <key attr.name="moleculeType" attr.type="string" for="node" id="moleculeType"/>
+    <key attr.name="plotted" attr.type="boolean" for="node" id="plotted"/>
+    <key attr.name="SUID" attr.type="long" for="node" id="SUID"/>
+    <key attr.name="shared name" attr.type="string" for="node" id="shared name"/>
+    <key attr.name="shared interaction" attr.type="string" for="node" id="shared interaction"/>
+    <key attr.name="name" attr.type="string" for="node" id="name"/>
+    <key attr.name="selected" attr.type="boolean" for="node" id="selected"/>
+    <key attr.name="interaction" attr.type="string" for="node" id="interaction"/>
+    <key attr.name="canonicalName" attr.type="string" for="node" id="canonicalName"/>
+    <key attr.name="description" attr.type="string" for="node" id="description"/>
+    <key attr.name="enabled" attr.type="boolean" for="node" id="enabled"/>
+    <key attr.name="increment" attr.type="int" for="node" id="increment"/>
+    <key attr.name="k" attr.type="double" for="node" id="k"/>
+    <key attr.name="output reactant" attr.type="string" for="node" id="output reactant"/>
+    <key attr.name="scenario" attr.type="int" for="node" id="scenario"/>
+    <key attr.name="Bend.handles" attr.type="string" for="node" id="Bend.handles"/>
+    <key attr.name="activityRatio" attr.type="double" for="node" id="activityRatio"/>
+    <key attr.name="SUID" attr.type="long" for="node" id="SUID"/>
+    <key attr.name="shared name" attr.type="string" for="node" id="shared name"/>
+    <key attr.name="name" attr.type="string" for="node" id="name"/>
+    <key attr.name="selected" attr.type="boolean" for="node" id="selected"/>
+    <key attr.name="networkMetadata" attr.type="string" for="node" id="networkMetadata"/>
+    <key attr.name="levels" attr.type="int" for="node" id="levels"/>
+    <key attr.name="seconds per point" attr.type="double" for="node" id="seconds per point"/>
+    <key attr.name="__Annotations" attr.type="string" for="node" id="__Annotations"/>
+    <graph edgedefault="directed" id="Network 0">
+        <node id="66">
+            <data key="SUID">66</data>
+            <data key="shared name">node_378</data>
+            <data key="name">node_378</data>
+            <data key="selected">false</data>
+            <data key="NODE_TYPE">DefaultNode</data>
+            <data key="Position.X">-42.86096239089966</data>
+            <data key="Position.Y">-23.211029291152954</data>
+            <data key="activityRatio">1.0</data>
+            <data key="canonicalName">ERK phosphatase</data>
+            <data key="description"/>
+            <data key="enabled">true</data>
+            <data key="initialConcentration">1</data>
+            <data key="levels">1</data>
+            <data key="moleculeType">Phosphatase</data>
+            <data key="plotted">false</data>
+        </node>
+        <node id="65">
+            <data key="SUID">65</data>
+            <data key="shared name">node_290</data>
+            <data key="name">node_290</data>
+            <data key="selected">false</data>
+            <data key="NODE_TYPE">DefaultNode</data>
+            <data key="Position.X">27.13906118273735</data>
+            <data key="Position.Y">30.788970708847046</data>
+            <data key="activityRatio">0.0</data>
+            <data key="canonicalName">ERK</data>
+            <data key="description"/>
+            <data key="enabled">true</data>
+            <data key="initialConcentration">0</data>
+            <data key="levels">100</data>
+            <data key="moleculeType">Kinase</data>
+            <data key="plotted">true</data>
+        </node>
+        <node id="64">
+            <data key="SUID">64</data>
+            <data key="shared name">node_154</data>
+            <data key="name">node_154</data>
+            <data key="selected">false</data>
+            <data key="NODE_TYPE">DefaultNode</data>
+            <data key="Position.X">-59.261383056640625</data>
+            <data key="Position.Y">-160.1845703125</data>
+            <data key="activityRatio">0.0</data>
+            <data key="canonicalName">EGFR internalization</data>
+            <data key="description"/>
+            <data key="enabled">true</data>
+            <data key="initialConcentration">0</data>
+            <data key="levels">100</data>
+            <data key="moleculeType">Other</data>
+            <data key="plotted">false</data>
+        </node>
+        <node id="63">
+            <data key="SUID">63</data>
+            <data key="shared name">node_506</data>
+            <data key="name">node_506</data>
+            <data key="selected">false</data>
+            <data key="NODE_TYPE">DefaultNode</data>
+            <data key="Position.X">27.139060974121094</data>
+            <data key="Position.Y">-94.21102905273438</data>
+            <data key="activityRatio">0.0</data>
+            <data key="canonicalName">EGFR</data>
+            <data key="description"/>
+            <data key="enabled">true</data>
+            <data key="initialConcentration">0</data>
+            <data key="levels">100</data>
+            <data key="moleculeType">Receptor</data>
+            <data key="plotted">false</data>
+        </node>
+        <node id="62">
+            <data key="SUID">62</data>
+            <data key="shared name">node</data>
+            <data key="name">node</data>
+            <data key="selected">false</data>
+            <data key="NODE_TYPE">DefaultNode</data>
+            <data key="Position.X">27.139060974121094</data>
+            <data key="Position.Y">-214.21102905273438</data>
+            <data key="activityRatio">1.0</data>
+            <data key="canonicalName">EGF</data>
+            <data key="description"/>
+            <data key="enabled">true</data>
+            <data key="initialConcentration">100</data>
+            <data key="levels">100</data>
+            <data key="moleculeType">Cytokine</data>
+            <data key="plotted">false</data>
+        </node>
+        <edge source="66" target="65">
+            <data key="SUID">71</data>
+            <data key="shared name">node_378 (DefaultEdge) node_290</data>
+            <data key="shared interaction">DefaultEdge</data>
+            <data key="name">node_378 (DefaultEdge) node_290</data>
+            <data key="selected">false</data>
+            <data key="interaction">DefaultEdge</data>
+            <data key="canonicalName">node_378 (DefaultEdge) node_290</data>
+            <data key="description"/>
+            <data key="enabled">true</data>
+            <data key="increment">-1</data>
+            <data key="k">0.004</data>
+            <data key="output reactant">node_290</data>
+            <data key="scenario">1</data>
+            <data key="Bend.handles">[]</data>
+            <data key="activityRatio">0.25</data>
+        </edge>
+        <edge source="64" target="63">
+            <data key="SUID">70</data>
+            <data key="shared name">node_154 (DefaultEdge) node_506</data>
+            <data key="shared interaction">DefaultEdge</data>
+            <data key="name">node_154 (DefaultEdge) node_506</data>
+            <data key="selected">false</data>
+            <data key="interaction">DefaultEdge</data>
+            <data key="canonicalName">node_154 (DefaultEdge) node_506</data>
+            <data key="description"/>
+            <data key="enabled">true</data>
+            <data key="increment">-1</data>
+            <data key="k">0.016</data>
+            <data key="output reactant">node_506</data>
+            <data key="scenario">0</data>
+            <data key="Bend.handles">[-10.929967880249023, -137.05081176757812]</data>
+            <data key="activityRatio">0.25</data>
+        </edge>
+        <edge source="63" target="65">
+            <data key="SUID">69</data>
+            <data key="shared name">node_506 (DefaultEdge) node_290</data>
+            <data key="shared interaction">DefaultEdge</data>
+            <data key="name">node_506 (DefaultEdge) node_290</data>
+            <data key="selected">false</data>
+            <data key="interaction">DefaultEdge</data>
+            <data key="canonicalName">node_506 (DefaultEdge) node_290</data>
+            <data key="description"/>
+            <data key="enabled">true</data>
+            <data key="increment">1</data>
+            <data key="k">0.016</data>
+            <data key="output reactant">node_290</data>
+            <data key="scenario">1</data>
+            <data key="Bend.handles">[]</data>
+            <data key="activityRatio">0.25</data>
+        </edge>
+        <edge source="63" target="64">
+            <data key="SUID">68</data>
+            <data key="shared name">node_506 (DefaultEdge) node_154</data>
+            <data key="shared interaction">DefaultEdge</data>
+            <data key="name">node_506 (DefaultEdge) node_154</data>
+            <data key="selected">false</data>
+            <data key="interaction">DefaultEdge</data>
+            <data key="canonicalName">node_506 (DefaultEdge) node_154</data>
+            <data key="description"/>
+            <data key="enabled">true</data>
+            <data key="increment">1</data>
+            <data key="k">0.004</data>
+            <data key="output reactant">node_154</data>
+            <data key="scenario">0</data>
+            <data key="Bend.handles">[-39.817874908447266, -93.44644165039062]</data>
+            <data key="activityRatio">0.25</data>
+        </edge>
+        <edge source="62" target="63">
+            <data key="SUID">67</data>
+            <data key="shared name">node (DefaultEdge) node_506</data>
+            <data key="shared interaction">DefaultEdge</data>
+            <data key="name">node (DefaultEdge) node_506</data>
+            <data key="selected">false</data>
+            <data key="interaction">DefaultEdge</data>
+            <data key="canonicalName">node (DefaultEdge) node_506</data>
+            <data key="description"/>
+            <data key="enabled">true</data>
+            <data key="increment">1</data>
+            <data key="k">0.008</data>
+            <data key="output reactant">node_506</data>
+            <data key="scenario">0</data>
+            <data key="Bend.handles">[]</data>
+            <data key="activityRatio">0.25</data>
+        </edge>
+    </graph>
+</graphml>

@@ -20,7 +20,7 @@ args = parser.parse_args()
 
 if args.model:
 
-	model = open("modelABCDE.imi","wra")
+	model = open("model_fit_egf.imi","wra")
 	
 	#head of file
 	model.write("(********************************************************\n\n")
@@ -85,7 +85,7 @@ if args.model:
 
 
 
-	tree = etree.parse("data.xml")
+	tree = etree.parse("modelesBio/Model_fit_egf.xml")
 	modelGraph = Graph()
 
 	#construction d'une structure de donné pour stocker le graphe
@@ -104,7 +104,7 @@ if args.model:
 	   
 	      if f.get("key") == "canonicalName":
 
-		  mol.canonicalName = f.text
+		  mol.canonicalName = f.text.replace(" ","_")
 	   
 	      if f.get("key") == "selected":
 	  
@@ -221,6 +221,7 @@ if args.model:
 	    
 	    #loc activating
 	    automata.write("loc "+"activating_"+node.canonicalName+": while x_"+node.canonicalName+" <= d_"+node.canonicalName+"_max wait {} \n")
+            automata.write("            when x_"+node.canonicalName+" >= d_"+node.canonicalName+"_min do {x_"+node.canonicalName+"' = 0} goto active_"+node.canonicalName+"; \n")
 	    for elt in syncact.split(","):
 	      if elt!= "":
 	         automata.write("            when x_"+node.canonicalName+" >= d_"+node.canonicalName+"_min  sync "+elt+" do {x_"+node.canonicalName+"' = 0} goto active_"+node.canonicalName+"; \n")   
@@ -228,9 +229,10 @@ if args.model:
 	    #loc inhibiting
 	    automata.write("\n")
 	    automata.write("loc "+"inhibiting_"+node.canonicalName+": while x_"+node.canonicalName+" >= d_"+node.canonicalName+"_min wait {}\n")
+            automata.write("           when x_"+node.canonicalName+" < d_"+node.canonicalName+"_max do {x_"+node.canonicalName+"' = 0} goto inactive_"+node.canonicalName+"; \n")
 	    for elt in syncinh.split(","):
 	       if elt != "":
-	          automata.write("            when x_"+node.canonicalName+" < d_"+node.canonicalName+"_max  sync"+elt+" do {x_"+node.canonicalName+"' = 0} goto inactive_"+node.canonicalName+"; \n\n")    
+	          automata.write("            when x_"+node.canonicalName+" < d_"+node.canonicalName+"_max  sync "+elt+" do {x_"+node.canonicalName+"' = 0} goto inactive_"+node.canonicalName+"; \n\n")    
 
             
 	    #loc active
