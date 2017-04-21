@@ -21,6 +21,14 @@ Last modified : 2017/04/20
 import os
 import re
 import argparse
+import numpy as np
+import pandas as pd
+
+#ggplot pour les courbes
+
+
+#http://pandas.pydata.org/pandas-docs/stable/dsintro.html
+
 
 
 #program arguments mangement
@@ -28,8 +36,8 @@ import argparse
 parser = argparse.ArgumentParser()
 
 #add of options
-parser.add_argument("-v", "--verbose", type = string, help = "increase output verbosity", action = "store_true")
-
+parser.add_argument("-v", "--verbose", help = "increase output verbosity", action = "store_true")
+parser.add_argument("-c", "--compare",  action = "store_true", help = "compare the model checking between IMITATOR and UPAALL on ANIMO models")
 
 #parse options
 args = parser.parse_args()
@@ -38,17 +46,38 @@ args = parser.parse_args()
 
 #start
 
-if args.verbose:
-   
-    print("verbosity turned on")
+if args.compare:
 
     #read files
-    concentration = open("testConcentrations-statespace.states","ra")
+    fichier = open("modelesImi/testConcentrations-statespace.states","r")
 
-    concentration.
+    concentration = fichier.read()
+
+    ETAT = r"(?P<STATE>\w+)"
+    concentrationl = concentration.split("\n")
+    for ligne in concentrationl:
+
+     #extract states, clocks and clocks values
+
+        modex = re.search(r"(?P<STATE>\w+) (?P<etat>\d+)",ligne)
+               
+        if modex is not None:
+       
+            print modex.group('STATE')
+	    print modex.group('etat')
+	
+	else:
+	    sligne = ligne.split(",")
+	    for sl in sligne:
+
+	       modexbis = re.search(r"(?P<automate>\w+) = d+|d+/d+ (~(?P<clock>\d+.d+))", sl)
+               
+	       if modexbis is not None:
+
+	           print modexbis.group('automate')
+	           print modexbis.group('etat')
 
 
-    #extract states, clocks and clocks values
 
 
 
