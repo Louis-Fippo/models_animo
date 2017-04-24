@@ -101,12 +101,11 @@ if args.compare:
                            print modexbis.groups()
            	           print modexbis.group('automate')
 	                   print modexbis.group('clock')
-			   print("valeur de i:",i)
 			   if i == 0 :
 			       with open("modelesImi/automate"+modexbis.group('automate')+".conca", "a") as automate:
 			            automate.write(modexbis.group('automate')+"\t")
 				    automate.write(modexbis.group('clock')+"\t")
-				    print("un test bizarre:"+modexbis.group('clock'), i)
+				    print modexbis.group('clock')
 				    automate.close()
 				    ligneheader = modexbis.group('automate')+"\t"+modexbis.group('clock')+"\t"
 		          
@@ -116,7 +115,7 @@ if args.compare:
 				     automate.close()
 				     ligneheader = "\t"+modexbis.group('clock')+"\t"
 			  
-                     i = i + 1  
+		           i = i + 1  
 	             nextLigneGood = False
                      #i = i + 1    
                         
