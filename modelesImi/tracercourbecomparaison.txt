@@ -1,0 +1,17 @@
+#pour tracer les courbes
+library(ggplot2)
+library(plyr)
+library(reshape2)
+melt(donnees)
+
+mdonnees = melt(donnees) #on fait un melt des donnees
+mdonnees$variable
+mdonnees$variablenum = as.numeric(mdonnees$variable)
+
+ggplot(mdonnees, aes(x = variablenum)) + geom_line(aes(y = value, color=automates))
+
+ggplot(mdonnees, aes(x = variablenum)) + geom_line(aes(y = value, color=automates)) + scale_y_log10()
+
+ggplot(mdonnees, aes(x = variablenum + 0.001)) + geom_line(aes(y = value, color=automates)) + scale_y_log10()
+
+ggplot(mdonnees, aes(x = variablenum)) + geom_line(aes(y = value + 0.1, color=automates)) + scale_y_log10()

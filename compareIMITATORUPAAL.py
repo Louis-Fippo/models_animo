@@ -25,7 +25,7 @@ import argparse       #pour parser les arguments de la ligne de commande
 import numpy as np    #aussi pour les stats
 import pandas as pd   #pour les stat sous python
 import fileinput     
-from ggplot import *  #pour le tracé des courbes
+#from ggplot import *  #pour le tracé des courbes
 
 
 #ggplot pour les courbes
@@ -57,7 +57,7 @@ if args.compare:
     dataConcen = open("modelesImi/dataConcentration.txt","a")
     etatConcen = open("modelesImi/aetatConcentration.conca","a")
     #read files
-    fichier = open("modelesImi/testConcentrations-statesspaceshort.states","r")
+    fichier = open("modelesImi/testConcentrations-statespace.states","r")
 
     concentration = fichier.read()
     nextLigneGood = False #to know if the next ligne contains automata and clocks
@@ -149,12 +149,14 @@ if args.compare:
     dataConcen.close()
     
 
-
+    #toute cette partie est à terminée plu tard
     #read the data file with pandas for statistical analysis
+    """
     donnees = pd.read_table("modelesImi/dataConcentration.txt",sep="\t")
     print(donnees.head())
     #delete the last column
     donnees.drop(donnees.columns[[-1]],axis=1, inplace=True)
-    
+    donnees.plot()
     #tracé des courbes avec ggplot
-
+    """
+    
