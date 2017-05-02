@@ -55,7 +55,9 @@ if args.compare:
 
     #dataframe for concentration
     dataConcen = open("modelesImi/dataConcentration.txt","a")
+    dataConcenbis = open("modelsImi/data/dataConcentrationbis.txt","a")
     etatConcen = open("modelesImi/aetatConcentration.conca","a")
+    automatebis = open("modelsImi/data/automatebis.conca","a")
     #read files
     fichier = open("modelesImi/testConcentrations-statespace.states","r")
 
@@ -86,6 +88,7 @@ if args.compare:
 		    print modex.group('STATE')
 		    print modex.group('etat')
 		    etatConcen.write(modex.group('etat')+"\t")
+                    etatConcenbis.write(modex.group('etat')+"\t")
 		#   lignedata = lignedata + modex.group('etat')+"\t"
 		    
 
@@ -111,9 +114,12 @@ if args.compare:
 				          if len(automatelec.read()) == 0:
 					    automate.write(modexbis.group('automate')+"\t")
 					    automate.write(modexbis.group('clock')+"\t")
+                                            automatebis.write(modexbis.group('automate')+"\t") #pour la versionn en colonnes
+                                            etatConcenbis.write(modexbis.group('etat')+"\t")
 					    automate.close()
 					  else:
 					    automate.write(modexbis.group('clock')+"\t")
+                                            etatConcenbis.write(modexbis.group('clock')+"\t")
 					    automate.close()
 
 					    ligneheader = modexbis.group('automate')+"\t"+modexbis.group('clock')+"\t"
@@ -121,6 +127,7 @@ if args.compare:
 				   else:
 					with open("modelesImi/automate"+modexbis.group('automate')+".conca","a") as automate:
 					     automate.write(modexbis.group('clock')+"\t")
+					     etatConcenbis.write(modexbis.group('clock')+"\t")
 					     automate.close()
 					     ligneheader = "\t"+modexbis.group('clock')+"\t"
 				#	     lignedata = lignedata + "\t" + modexbis.group('clock')+"\t"
