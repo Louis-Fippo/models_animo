@@ -1,0 +1,1 @@
+simulate 1 [<=23040000] { R2, R3, R4, R0, R1, R4_R3.T, R2_R1.T, R1_R3.T, R0_R1.T, R1_R2.T }

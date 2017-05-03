@@ -1,0 +1,65 @@
+Minimum time: 1000.
+Maximum time: 10000000
+Time scale: Property['time scale factor' = 1600.0]
+	UPPAAL analysis of /tmp/ANIMO4970002230732330059.xml took 0 days, 0 hours, 0 minutes, 0 seconds
+	Parsing the result produced by UPPAAL took 0 days, 0 hours, 0 minutes, 0 seconds
+animo.core.analyser.AnalysisException: Error during analysis: <pre>java.lang.Exception: [/tmp/ANIMO4970002230732330059.xml] Verify result: 1
+ empty result
+/tmp/ANIMO4970002230732330059.xml:/nta/template[1]/transition[7]/label[2]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[1]/transition[9]/label[3]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[1]/transition[11]/label[2]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[1]/transition[15]/label[1]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[1]/transition[16]/label[1]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[2]/transition[7]/label[2]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[2]/transition[9]/label[3]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[2]/transition[11]/label[2]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[2]/transition[14]/label[1]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[3]/transition[7]/label[2]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[3]/transition[9]/label[3]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[3]/transition[11]/label[2]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[3]/transition[15]/label[1]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[3]/transition[16]/label[1]:1: [error] Clock guards are not allowed on broadcast receivers.
+ (current directory: /users/fippofitime/Cytoscape_v3.4.0/.)
+
+	at animo.core.analyser.uppaal.UppaalModelAnalyserSMC.analyze(UppaalModelAnalyserSMC.java:666)
+	at animo.cytoscape.RunAction$RunTask.performNormalAnalysis(RunAction.java:141)
+	at animo.cytoscape.RunAction$RunTask.run(RunAction.java:312)
+	at org.cytoscape.work.internal.task.JDialogTaskManager$TaskRunnable.innerRun(JDialogTaskManager.java:326)
+	at org.cytoscape.work.internal.task.JDialogTaskManager$TaskRunnable.run(JDialogTaskManager.java:355)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+</pre>
+	at animo.core.analyser.uppaal.UppaalModelAnalyserSMC.analyze(UppaalModelAnalyserSMC.java:683)
+	at animo.cytoscape.RunAction$RunTask.performNormalAnalysis(RunAction.java:141)
+	at animo.cytoscape.RunAction$RunTask.run(RunAction.java:312)
+	at org.cytoscape.work.internal.task.JDialogTaskManager$TaskRunnable.innerRun(JDialogTaskManager.java:326)
+	at org.cytoscape.work.internal.task.JDialogTaskManager$TaskRunnable.run(JDialogTaskManager.java:355)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.Exception: [/tmp/ANIMO4970002230732330059.xml] Verify result: 1
+ empty result
+/tmp/ANIMO4970002230732330059.xml:/nta/template[1]/transition[7]/label[2]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[1]/transition[9]/label[3]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[1]/transition[11]/label[2]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[1]/transition[15]/label[1]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[1]/transition[16]/label[1]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[2]/transition[7]/label[2]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[2]/transition[9]/label[3]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[2]/transition[11]/label[2]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[2]/transition[14]/label[1]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[3]/transition[7]/label[2]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[3]/transition[9]/label[3]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[3]/transition[11]/label[2]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[3]/transition[15]/label[1]:1: [error] Clock guards are not allowed on broadcast receivers.
+/tmp/ANIMO4970002230732330059.xml:/nta/template[3]/transition[16]/label[1]:1: [error] Clock guards are not allowed on broadcast receivers.
+ (current directory: /users/fippofitime/Cytoscape_v3.4.0/.)
+
+	at animo.core.analyser.uppaal.UppaalModelAnalyserSMC.analyze(UppaalModelAnalyserSMC.java:666)
+	... 9 more
+Time taken: 0 days, 0 hours, 0 minutes, 1 second
