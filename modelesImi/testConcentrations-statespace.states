@@ -3,12 +3,21 @@
  * Version  : IMITATOR 2.9.2-working "Butter Incaberry" (build 2282)
  * Model    : 'modelesImi/testConcentrations.imi'
  * Algorithm: Post*
+<<<<<<< HEAD
  * Command  : ./imitator modelesImi/testConcentrations.imi -mode statespace -depth-limit 60 -output-states -output-float
  * Generated: Mon May 15, 2017 15:47:19
+=======
+ * Command  : ./imitator modelesImi/testConcentrations.imi -mode statespace -depth-limit 600 -output-states -output-float
+ * Generated: Mon May 15, 2017 12:35:08
+>>>>>>> 50022537ae132373060ae19a0aa035c0a3320ed3
  *
  * 1772 states and 1772 transitions
  *
+<<<<<<< HEAD
  * IMITATOR terminated after 1.280 seconds
+=======
+ * IMITATOR terminated after 1.175 seconds
+>>>>>>> 50022537ae132373060ae19a0aa035c0a3320ed3
 ************************************************************/
 
   DESCRIPTION OF THE STATES

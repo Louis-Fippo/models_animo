@@ -173,3 +173,10 @@ init :=
 & 0 <= d_EGF_min & d_EGF_min <= d_EGF_max 
 
 ;
+
+(************************************************************)
+(* Property specification *)
+(************************************************************)
+
+property := unreachable loc[active_EGF] = cdone;
+
