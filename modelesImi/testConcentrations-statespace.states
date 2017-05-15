@@ -4,11 +4,11 @@
  * Model    : 'modelesImi/testConcentrations.imi'
  * Algorithm: Post*
  * Command  : ./imitator modelesImi/testConcentrations.imi -mode statespace -depth-limit 600 -output-states -output-float
- * Generated: Mon May 15, 2017 11:00:12
+ * Generated: Mon May 15, 2017 12:35:08
  *
  * 600 states and 599 transitions
  *
- * IMITATOR terminated after 1.580 seconds
+ * IMITATOR terminated after 1.175 seconds
 ************************************************************/
 
   DESCRIPTION OF THE STATES
