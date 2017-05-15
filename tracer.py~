@@ -1,0 +1,32 @@
+
+#-*- coding: utf-8 -*-
+
+
+"""
+* Python program to compare Model checking between 
+UPPAAL and IMITATOR
+
+Name          : tracer.py
+Version       : 0.0
+Author        : Louis Fippo Fitime
+
+Created       : 2017/05/09
+Last modified : 2017/05/09
+
+
+"""
+
+#importation of bibliothèques
+
+import sys
+import os        
+import argparse       #pour parser les arguments de la ligne de commande
+import numpy as np    #aussi pour les stats
+import pandas as pd   #pour les stat sous python
+import matplotlib.pyplot as plt
+import fileinput     
+
+plt.style.use('ggplot')
+
+
+

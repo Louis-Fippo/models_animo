@@ -12,7 +12,7 @@
  * License         : Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
  *
  * Created         : 2017/04/18
- * Last modified   : 2017/04/18
+ * Last modified   : 2017/05/12
  *
  * IMITATOR version: 2.9
  ************************************************************)
@@ -46,10 +46,12 @@ var
 (************************************************************)
 synclabs: tick;
 
-loc l1: while tick <= 1 (*& t <= TIMEBOUND*) wait {}
-	when tick = 1 sync tick do {tick' = 0} goto l1;
+(*loc l1: while tick <= 1 (*& t <= TIMEBOUND*) wait {}
+	when tick = 1 sync tick do {tick' = 0} goto l1;*)
+loc start: while tick <= 1 (*& t <= TIMEBOUND*) wait {}
+	when tick = 1 sync tick do {tick' = 0} goto start;
 
-end (* pta *)
+end (* tick *)
 
 (************************************************************)
   automaton EGFR
@@ -59,7 +61,22 @@ synclabs: tick;
 loc l1: while True wait {}
 	when True sync tick do {cEGFR' = cEGFR + (*kEGFRi **)-0.008 cEGFRi + (*kEGF **)0.004 cEGF} goto l1;
 
-end (* pta *)
+(*loc start: while True wait{}
+	   when True & 0 <= cEGFR  sync tick  do {cEGFR' = 0} goto updating; 
+
+(*loc responding: while True wait {}
+
+loc not_reacting: while True wait {}*)
+
+loc updating: while True wait {}
+              when True & 0 <= cEGFR  sync tick  do {cEGFR' = cEGFR + (*kEGFRi **)-0.008 cEGFRi + (*kEGF **)0.004 cEGF} goto updating;
+              (*when True & cEGFR <=0  sync tick  do {cEGFR' = 0} goto waiting; *)
+
+loc waiting: while True wait {}
+             when 0 <= cEGFR  sync tick goto updating;
+*)
+
+end (* EGFR *)
 
 
 (************************************************************)
@@ -69,8 +86,23 @@ synclabs: tick;
 
 loc l1: while True wait {}
 	when True sync tick do {cEGFRi' = cEGFRi + 0.004 cEGFR} goto l1;
+(*
+loc start: while True wait{}
+	   when True & 0<= cEGFRi sync tick  do {cEGFRi' = 0} goto updating; 
 
-end (* pta *)
+(*loc responding: while True wait {}
+
+loc not_reacting: while True wait {}*)
+
+loc updating: while True wait {}
+              when True & 0 <= cEGFRi  sync tick  do {cEGFRi' = cEGFRi + 0.004 cEGFR} goto updating;
+              when True & cEGFRi <=0  sync tick  do {cEGFRi' = 0} goto waiting; 
+
+loc waiting: while True wait {}
+             when 0<= cEGFRi sync tick do {cEGFRi' = 0} goto updating;
+*)
+
+end (* EGFRi *)
 
 
 (************************************************************)
@@ -80,8 +112,23 @@ synclabs: tick;
 
 loc l1: while True wait {}
 	when True sync tick do {cERK' = cERK + 0.004 cEGFR - 0.001 cERKp} goto l1;
+(*
+loc start: while True wait{}
+	   when True & 0<= cERK sync tick  do {cERK' = 0} goto updating; 
 
-end (* pta *)
+(*loc responding: while True wait {}
+
+loc not_reacting: while True wait {}*)
+
+loc updating: while True wait {}
+              when True & 0 <= cERK sync tick  do {cERK' = cERK + 0.004 cEGFR - 0.001 cERKp} goto updating;
+              when True & cERK <=0  sync tick  do {cERK' = 0} goto waiting; 
+
+loc waiting: while True wait {}
+             when 0<= cERK  sync tick do {cERK' = 0} goto updating;
+*)
+
+end (* ERK *)
 
 
 
@@ -99,7 +146,7 @@ init :=
 	(*------------------------------------------------------------*)
 	(* Initial location *)
 	(*------------------------------------------------------------*)
-	& loc[tick] = l1
+	& loc[tick] = start
 	& loc[EGFR] = l1
 	& loc[EGFRi] = l1
 	& loc[ERK] = l1
