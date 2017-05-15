@@ -152,7 +152,7 @@ if args.compare:
     print("Building new files...")
     
     #generate data from model checking with IMITATOR
-    os.system('./imitator modelesImi/testConcentrations.imi -mode statespace -depth-limit 1200 -output-states -output-float')
+    os.system('./imitator modelesImi/testConcentrations.imi -mode statespace -depth-limit 60 -output-states -output-float')
     print("Fin generation donnees")
 
 

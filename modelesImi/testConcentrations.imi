@@ -59,7 +59,8 @@ end (* tick *)
 synclabs: tick;
 
 loc l1: while True wait {}
-	when True sync tick do {cEGFR' = cEGFR + (*kEGFRi **)-0.008 cEGFRi + (*kEGF **)0.004 cEGF} goto l1;
+	when True sync tick do {cEGFR' = cEGFR + (*kEGFRi **)-0.008 cEGFRi + (*kEGF **)0.004 cEGF}  goto l1;
+        when cEGFR <=0 do {cEGFR' = 0} goto l1;
 
 (*loc start: while True wait{}
 	   when True & 0 <= cEGFR  sync tick  do {cEGFR' = 0} goto updating; 
@@ -72,8 +73,10 @@ loc updating: while True wait {}
               when True & 0 <= cEGFR  sync tick  do {cEGFR' = cEGFR + (*kEGFRi **)-0.008 cEGFRi + (*kEGF **)0.004 cEGF} goto updating;
               (*when True & cEGFR <=0  sync tick  do {cEGFR' = 0} goto waiting; *)
 
+
 loc waiting: while True wait {}
-             when 0 <= cEGFR  sync tick goto updating;
+             when True & cEGFR <= 0 sync tick do {cEGFR' = 0} goto waiting;
+             when True & cEGFR >= 0 sync tick do {cEGFR' = cEGFR + (*kEGFRi **)-0.008 cEGFRi + (*kEGF **)0.004 cEGF} goto l1;
 *)
 
 end (* EGFR *)
