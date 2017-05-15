@@ -1,0 +1,6 @@
+Minimum time: 1000.
+Maximum time: 10000000
+Time scale: Property['time scale factor' = 1600.0]
+1	UPPAAL analysis of /tmp/ANIMO3267828986814381712.xml took 0 days, 0 hours, 0 minutes, 0 seconds
+	Parsing the result produced by UPPAAL took 0 days, 0 hours, 0 minutes, 0 seconds
+Time taken: 0 days, 0 hours, 0 minutes, 0 seconds
